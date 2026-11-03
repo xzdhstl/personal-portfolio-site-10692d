@@ -10,23 +10,19 @@ export const Route = createFileRoute('/about')({
   head: () =>
     pageMeta(
       '关于',
-      `${site.name}——常驻${site.location}的摄影师与艺术指导。经历、客户与器材。`,
+      `${site.name}——常驻${site.location}的一名学生。作品、在校经历与日常。`,
     ),
 })
 
 const year = (date: string) => date.slice(0, 4)
 
-const clients = [
-  '潮汐酒馆',
-  '采石场出版社',
-  '夜片电影节',
-  '发酵所',
-  '《田野与形式》',
-  'Casa Lusa 酒店',
-  'Norse Projects',
-  '温柔出版社',
-  '里斯本建筑三年展',
-  'Olho 工作室',
+const activities = [
+  '校园摄影社',
+  '校刊视觉',
+  '独立杂志《印样》',
+  '毕业季拍摄',
+  '城市漫步企划',
+  '好友肖像',
 ]
 
 const kit = [
@@ -34,7 +30,7 @@ const kit = [
   ['Mamiya 7', '80mm——留给值得 6×7 的风景'],
   ['Hasselblad 500C', '方画幅，慢思考'],
   ['胶片', 'Portra 400、Ektar 100，天黑后用 CineStill 800T'],
-  ['暗房', '自己搭的，在里斯本。只在周五开工。'],
+  ['暗房', '自己搭的，只在周末开工。'],
 ]
 
 function About() {
@@ -63,7 +59,7 @@ function About() {
             />
             <Photo
               src="/img/portrait.jpg"
-              alt={`${site.name}在里斯本的工作室里，手持一台 35mm 相机，身后是一整面钉满照片的墙。`}
+              alt={`${site.name}在荆州，手持一台相机，身后是一面钉满照片的墙。`}
               width={928}
               height={1152}
               sizes="(min-width: 1024px) 38vw, 92vw"
@@ -72,35 +68,34 @@ function About() {
             />
           </div>
           <p className="label mt-10 text-ink-soft">
-            肖像 · 工作室 · 里斯本 — Portra 400
+            肖像 · 自拍 · 荆州 — Portra 400
           </p>
         </div>
         <div className="lg:col-span-6 lg:col-start-7 lg:pt-6">
           <p className="label animate-rise text-ink-soft">03 — 关于</p>
           <h1 className="mt-6 animate-rise font-display text-[clamp(3rem,6.4vw,6.2rem)] leading-[1.1] tracking-[-0.02em] [animation-delay:120ms]">
-            你好，我是{site.name}。我追的是那段
-            <span className="italic text-safelight">没人想要的时辰</span>。
+            你好，我是{site.name}。我喜欢在{site.location}的街巷里，
+            <span className="italic text-safelight">拍下那些被忽略的、安静的瞬间。</span>
           </h1>
           <div className="mt-10 max-w-xl animate-rise space-y-5 text-lg leading-relaxed text-ink-soft [animation-delay:240ms]">
             <p>
-              我是一名摄影师兼艺术指导，工作室在{site.location}，阳光很好。
-              十年来，我为杂志、餐厅、节庆活动和一些小品牌拍照——它们宁愿被人记住，
-              也不想到处可见。
+              我是一名在{site.location}念书的学生，平时给社团活动、朋友和路边
+              随手拍拍照——它们不一定有用，但我想记住。
             </p>
             <p>
-              我的工作介于相机和版式网格之间：先拍下照片，再设计承载它们的品牌、
-              书籍或宣传。一个人，一种视角，不会在层层交接中走样。
+              我的兴趣在相机和版式之间：先拍下照片，再试着把它们排成一本小小的
+              杂志，或一张海报。一个人，一种视角，不乐意被太多人左右。
             </p>
             <p>
-              委托之外，我在长长的散步中拍胶片，在自己搭的暗房里放照片，
-              每月写一封信，一次讲一卷胶片。
+              课余时间，我在长长的散步里拍胶片，在宿舍里翻看印样，
+              偶尔写一点关于照片的随笔。
             </p>
           </div>
           <dl className="mt-12 grid max-w-xl grid-cols-3 border-t border-ink pt-6">
             {[
-              ['10+', '年从业'],
-              ['300+', '次拍摄'],
-              ['30', '个国家'],
+              ['3 年', '拍照'],
+              ['200+', '卷胶片'],
+              ['1', '本自印 zine'],
             ].map(([value, term]) => (
               <div key={term}>
                 <dd className="font-display text-5xl md:text-6xl">{value}</dd>
@@ -152,9 +147,9 @@ function About() {
 
       <section className="mt-28 grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <h2 className="label text-ink-soft">部分客户</h2>
+          <h2 className="label text-ink-soft">做过的事</h2>
           <ul className="mt-6 font-display text-[clamp(2rem,4vw,3.6rem)] leading-[1.08] tracking-tight">
-            {clients.map((client, index) => (
+            {activities.map((client, index) => (
               <li key={client} className="inline">
                 <span className="transition-colors hover:text-safelight hover:italic">
                   {client}

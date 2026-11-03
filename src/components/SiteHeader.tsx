@@ -10,7 +10,7 @@ const links = [
   { to: '/contact', label: '联系', n: '04' },
 ] as const
 
-// Local time in Lisbon — rendered after mount so SSR and client agree.
+// 荆州本地时间 — 挂载后渲染，保证 SSR 与客户端一致。
 function useStudioTime() {
   const [time, setTime] = useState('')
   useEffect(() => {
@@ -19,7 +19,7 @@ function useStudioTime() {
         new Intl.DateTimeFormat('en-GB', {
           hour: '2-digit',
           minute: '2-digit',
-          timeZone: 'Europe/Lisbon',
+          timeZone: 'Asia/Shanghai',
         }).format(new Date()),
       )
     format()
@@ -62,7 +62,7 @@ export function SiteHeader() {
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-safelight opacity-60" />
             <span className="relative inline-flex size-2 rounded-full bg-safelight" />
           </span>
-          里斯本 {time && <span className="tabular-nums">{time}</span>}
+          荆州 {time && <span className="tabular-nums">{time}</span>}
         </p>
       </div>
     </header>

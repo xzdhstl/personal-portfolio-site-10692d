@@ -33,7 +33,7 @@ function Gallery() {
           </h1>
         </div>
         <p className="max-w-md animate-rise text-lg leading-relaxed text-ink-soft [animation-delay:240ms] lg:col-span-4 lg:col-start-9">
-          委托工作之间用胶片拍下的个人作品，除了扫描仪做的那点事，没有任何修图。
+          课余时间用胶片拍下的个人作品，除了扫描仪做的那点事，没有任何修图。
           点击任意一帧查看大图，用方向键在整卷里前后翻看。
         </p>
       </header>

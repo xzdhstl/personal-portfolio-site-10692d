@@ -1,5 +1,5 @@
 export const site = {
-  name: '旋转的红色陀螺', // TODO: 待用户提供真实姓名/站名
+  name: '旋转的红色陀螺',
   role: '学生',
   location: '湖北荆州',
   email: '13657195076@163.com',

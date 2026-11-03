@@ -92,7 +92,7 @@ function Projects() {
                 <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-ink/20 pt-6">
                   {(
                     [
-                      ['客户', project.client],
+                      ['合作方', project.client],
                       ['年份', project.year],
                       ['职责', project.role],
                     ] as const

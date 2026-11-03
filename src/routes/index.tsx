@@ -40,11 +40,11 @@ function Hero() {
         <h1 className="mt-8 font-display text-[clamp(3rem,6.2vw,6.2rem)] leading-[1.08] tracking-[-0.02em]">
           <span className="block animate-rise [animation-delay:100ms]">我拍</span>
           <span className="block animate-rise italic text-safelight [animation-delay:200ms]">
-            安静的照片，
+            安静的瞬间，
           </span>
-          <span className="block animate-rise [animation-delay:300ms]">也搭建</span>
+          <span className="block animate-rise [animation-delay:300ms]">也记下</span>
           <span className="block animate-rise [animation-delay:400ms]">
-            它们栖身的世界。
+            普通日子里的光。
           </span>
         </h1>
         <div className="mt-10 grid max-w-xl animate-rise gap-8 [animation-delay:550ms] sm:grid-cols-[auto_1fr]">
@@ -225,9 +225,9 @@ function SelectedWork() {
 
 function Manifesto() {
   const principles = [
-    ['光线优先。', '我先找时辰，再找地点。我的大多数照片，都拍在那段没人想要的二十分钟里。'],
+    ['先拍下来。', '大多数好照片都来自随手一拍——想太多反而拍不到。'],
     ['一帧一个想法。', '如果一张照片需要靠说明文字才能看懂，那它需要的是重拍。'],
-    ['做系统，不做一次性。', '品牌设计要经得起拍摄——照片也要经过艺术指导，最终成为品牌的一部分。'],
+    ['慢慢来。', '胶片很贵，时间很多。我宁愿少拍几张，也不急着发出来。'],
   ]
   return (
     <section className="mx-auto mt-32 grid max-w-[1500px] gap-16 px-5 md:px-10 lg:grid-cols-12">

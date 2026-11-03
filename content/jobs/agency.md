@@ -1,9 +1,9 @@
 ---
-jobTitle: '初级设计师'
-company: 'Ferris & Pike'
-location: '伦敦'
-startDate: '2014-09-01'
-endDate: '2016-12-01'
-summary: '为零售和食品品牌做品牌与包装设计；每周五负责打理工作室的暗房。'
-tags: ['品牌', '包装']
+jobTitle: '视觉设计 实习生'
+company: '（实习公司待补充）'
+location: '荆州'
+startDate: '2025-07-01'
+endDate: '2025-09-01'
+summary: '暑期在一家本地设计工作室实习，参与品牌与活动物料的排版。'
+tags: ['实习', '平面设计']
 ---

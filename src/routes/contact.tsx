@@ -8,7 +8,7 @@ export const Route = createFileRoute('/contact')({
   head: () =>
     pageMeta(
       '联系',
-      `委托、合作与购买照片——联系${site.name}。`,
+      `聊聊、约拍或只是打个招呼——联系${site.name}。`,
     ),
 })
 
@@ -76,20 +76,12 @@ function Contact() {
           </ul>
           <dl className="mt-12 space-y-6">
             <div>
-              <dt className="label text-ink-soft">工作室</dt>
-              <dd className="mt-1 text-lg">
-                {site.location}，Rua da Rosa 112，邮编 1200-388
-              </dd>
+              <dt className="label text-ink-soft">现居</dt>
+              <dd className="mt-1 text-lg">{site.location}</dd>
             </div>
             <div>
-              <dt className="label text-ink-soft">经纪</dt>
-              <dd className="mt-1 text-lg">Atelier North — 欧洲及英国</dd>
-            </div>
-            <div>
-              <dt className="label text-ink-soft">照片收藏</dt>
-              <dd className="mt-1 text-lg">
-                每版限量 10 张，纤维基相纸手工放印。欢迎索取清单。
-              </dd>
+              <dt className="label text-ink-soft">在读</dt>
+              <dd className="mt-1 text-lg">（学校 / 专业待补充）</dd>
             </div>
           </dl>
         </aside>
