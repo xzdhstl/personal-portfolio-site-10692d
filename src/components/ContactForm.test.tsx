@@ -30,7 +30,7 @@ describe('contact delivery', () => {
     await user.click(screen.getByRole('button', { name: '发送留言' }))
     await screen.findByRole('heading', { name: '已收到留言' })
     const [url, init] = fetch.mock.calls[0]
-    expect(url).toBe('/contact.html')
+    expect(url).toBe('/contact-form.html')
     expect(init.method).toBe('POST')
     expect(init.headers['Content-Type']).toBe(
       'application/x-www-form-urlencoded',
@@ -127,7 +127,7 @@ describe('contact delivery', () => {
       vi
         .fn()
         .mockResolvedValue(
-          new Response(readFileSync('public/contact.html', 'utf8')),
+          new Response(readFileSync('public/contact-form.html', 'utf8')),
         ),
     )
     const user = await fillForm()
@@ -166,7 +166,7 @@ describe('contact delivery', () => {
     const { container } = render(<ContactForm />)
     const form = container.querySelector('form')!
     const registration = new DOMParser()
-      .parseFromString(readFileSync('public/contact.html', 'utf8'), 'text/html')
+      .parseFromString(readFileSync('public/contact-form.html', 'utf8'), 'text/html')
       .querySelector('form')!
     for (const attribute of [
       'name',
