@@ -8,7 +8,7 @@ import { site, pageMeta } from '../lib/site'
 
 export const Route = createFileRoute('/')({
   component: PortfolioHome,
-  head: () => pageMeta('摄影师 · 艺术指导', site.description),
+  head: () => pageMeta(site.role, site.description),
 })
 
 const prints = [

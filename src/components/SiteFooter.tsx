@@ -38,7 +38,7 @@ export function SiteFooter() {
             ))}
           </ul>
           <p className="label text-paper/50">
-            © {new Date().getFullYear()} {site.name} · {site.coordinates}
+            © {new Date().getFullYear()} {site.name}
           </p>
         </div>
       </div>

@@ -1,14 +1,10 @@
 export const site = {
-  name: '旋转的红色陀螺',
-  role: '摄影师 · 艺术指导',
-  location: '葡萄牙里斯本',
-  coordinates: '38.72° N, 9.14° W',
-  email: 'hello@junoashby.studio',
-  availability: '2027 年春季档期开放预约',
-  description:
-    '旋转的红色陀螺是常驻里斯本的摄影师与艺术指导，拍安静、被阳光照透的照片，也为它们搭建品牌系统。',
-  summary:
-    '我拍安静、被阳光照透的照片——也设计让它们安身的品牌、书籍和宣传。',
+  name: '旋转的红色陀螺', // TODO: 待用户提供真实姓名/站名
+  role: '学生',
+  location: '湖北荆州',
+  email: '13657195076@163.com',
+  description: '我是湖北的，湖北十堰的…',
+  summary: '这里什么都没有',
 }
 
 export const socials = [

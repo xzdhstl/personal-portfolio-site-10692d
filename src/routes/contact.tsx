@@ -39,10 +39,6 @@ function Contact() {
             <h2 id="write" className="font-display text-4xl">
               开始一个项目
             </h2>
-            <p className="label hidden items-center gap-2 text-ink-soft sm:flex">
-              <span className="inline-block size-2 rounded-full bg-safelight" />
-              {site.availability}
-            </p>
           </div>
           <ContactForm />
         </section>
