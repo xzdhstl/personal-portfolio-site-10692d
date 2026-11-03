@@ -1,0 +1,188 @@
+@import 'tailwindcss' source('../');
+
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Darkroom palette: bone paper, developer-tray ink, and one safelight red.
+  Red is reserved for interaction and emphasis — never decoration.
+*/
+:root {
+  --paper: #ece6db;
+  --paper-deep: #e2dacb;
+  --ink: #16130f;
+  --ink-soft: #5d554a;
+  --safelight: #e0381c;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--safelight);
+  --accent-foreground: var(--paper);
+  --destructive: #b3261e;
+  --destructive-foreground: #b3261e;
+  --border: color-mix(in oklab, var(--ink) 18%, transparent);
+  --input: color-mix(in oklab, var(--ink) 30%, transparent);
+  --ring: var(--safelight);
+  --radius: 0;
+}
+
+@theme inline {
+  --font-display: 'Instrument Serif', 'Noto Serif SC', 'Songti SC', 'Times New Roman', serif;
+  --font-sans: 'Instrument Sans', 'Noto Sans SC', 'PingFang SC', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Noto Sans SC', 'PingFang SC', ui-monospace, Menlo, monospace;
+
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-safelight: var(--safelight);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  --animate-develop: develop 1.6s ease-out both;
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Prints "develop" in the tray: from washed-out to full contrast. */
+@keyframes develop {
+  from {
+    opacity: 0;
+    filter: grayscale(1) contrast(0.4) brightness(1.4);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply m-0 bg-background text-foreground font-sans;
+    /* Chinese fonts have no italic — keep CJK upright instead of faking a slant. */
+    font-synthesis-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--safelight);
+    color: var(--paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--safelight);
+    outline-offset: 3px;
+  }
+}
+
+/* Fixed film-grain overlay; never on scrolling containers. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@utility label {
+  @apply font-mono text-[0.7rem] uppercase tracking-[0.18em];
+}
+
+@utility link-wipe {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.1, 1);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+.contact-input {
+  @apply w-full bg-transparent border-0 border-b border-ink/40 px-0 py-3 text-lg placeholder:text-ink-soft/60 transition-colors focus:border-safelight focus:outline-none focus-visible:outline-none;
+}
+
+.contact-button {
+  @apply inline-flex items-center gap-3 bg-ink px-7 py-4 text-paper font-mono text-xs uppercase tracking-[0.18em] transition-colors hover:bg-safelight disabled:cursor-wait;
+}
+
+.prose {
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
