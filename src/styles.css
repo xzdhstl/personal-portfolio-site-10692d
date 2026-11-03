@@ -10,8 +10,8 @@
   Red is reserved for interaction and emphasis — never decoration.
 */
 :root {
-  --paper: #ece6db;
-  --paper-deep: #e2dacb;
+  --paper: #e0f0ff;
+  --paper-deep: #cfe5fb;
   --ink: #16130f;
   --ink-soft: #5d554a;
   --safelight: #e0381c;
@@ -35,13 +35,13 @@
   --border: color-mix(in oklab, var(--ink) 18%, transparent);
   --input: color-mix(in oklab, var(--ink) 30%, transparent);
   --ring: var(--safelight);
-  --radius: 0;
+  --radius: 1rem;
 }
 
 @theme inline {
-  --font-display: 'Instrument Serif', 'Noto Serif SC', 'Songti SC', 'Times New Roman', serif;
-  --font-sans: 'Instrument Sans', 'Noto Sans SC', 'PingFang SC', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'DM Mono', 'Noto Sans SC', 'PingFang SC', ui-monospace, Menlo, monospace;
+  --font-display: 'Baloo 2', 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif;
+  --font-sans: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Noto Sans SC', ui-monospace, Menlo, monospace;
 
   --color-paper: var(--paper);
   --color-paper-deep: var(--paper-deep);
@@ -68,10 +68,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-xl: 0;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
 
   --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
   --animate-develop: develop 1.6s ease-out both;
@@ -121,6 +121,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  img {
+    border-radius: var(--radius-lg);
+  }
   ::selection {
     background: var(--safelight);
     color: var(--paper);
@@ -164,7 +167,7 @@ body::after {
 }
 
 .contact-button {
-  @apply inline-flex items-center gap-3 bg-ink px-7 py-4 text-paper font-mono text-xs uppercase tracking-[0.18em] transition-colors hover:bg-safelight disabled:cursor-wait;
+  @apply inline-flex items-center gap-3 rounded-xl bg-ink px-7 py-4 text-paper font-mono text-xs uppercase tracking-[0.18em] transition-colors hover:bg-safelight disabled:cursor-wait;
 }
 
 .prose {
