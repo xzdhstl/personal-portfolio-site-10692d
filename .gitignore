@@ -1,6 +1,11 @@
 node_modules
 dist
+.output
+.vercel
 .netlify
+.content-collections
+src/routeTree.gen.ts
+pnpm-workspace.yaml
 .env
 .env.*
 *.local

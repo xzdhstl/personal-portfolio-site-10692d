@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import netlify from '@netlify/vite-plugin-tanstack-start'
+import { nitro } from 'nitro/vite'
 import contentCollections from '@content-collections/vite'
 
 const config = defineConfig({
@@ -10,8 +10,8 @@ const config = defineConfig({
   plugins: [
     contentCollections(),
     tailwindcss(),
-    netlify(),
     tanstackStart(),
+    nitro(),
     viteReact(),
   ],
 })
