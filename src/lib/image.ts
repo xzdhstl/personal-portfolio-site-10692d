@@ -1,11 +1,11 @@
-// Every photo on the site is served through Netlify Image CDN, which resizes
-// the full-resolution originals in /public/img and converts them to WebP.
-export function cdn(src: string, width: number, quality = 72) {
-  return `/.netlify/images?url=${encodeURIComponent(src)}&w=${width}&fm=webp&q=${quality}`
+// 静态托管（GitHub Pages）没有图片转换 CDN，直接使用 /public/img 下的原始文件。
+// width / quality 参数仅为兼容既有 <Photo> 调用而保留。
+export function cdn(src: string, _width?: number, _quality = 72) {
+  return src
 }
 
-export function srcSet(src: string, widths: readonly number[]) {
-  return widths.map((width) => `${cdn(src, width)} ${width}w`).join(', ')
+export function srcSet(_src: string, _widths: readonly number[]) {
+  return undefined
 }
 
 export const defaultWidths = [400, 640, 960, 1280] as const

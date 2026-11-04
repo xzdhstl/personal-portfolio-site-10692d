@@ -1,77 +1,64 @@
-import { useRef, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { Mail, Send } from 'lucide-react'
+import { site } from '../lib/site'
+
+/** 把留言拼成一个 mailto: 链接（静态托管下无需后端即可送信）。 */
+export function buildMailto(fields: {
+  name: string
+  email: string
+  message: string
+}): string {
+  const subject = `来自网站的留言 · ${fields.name || '匿名'}`
+  const body = `姓名：${fields.name}\n邮箱：${fields.email}\n\n${fields.message}`
+  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
 
 export function ContactForm() {
-  const [status, setStatus] = useState<
-    'idle' | 'pending' | 'error' | 'success'
-  >('idle')
-  const submitting = useRef(false)
+  const [status, setStatus] = useState<'idle' | 'success'>('idle')
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (submitting.current || status === 'success') return
-    const body = new URLSearchParams()
-    new FormData(event.currentTarget).forEach((value, key) =>
-      body.append(key, String(value)),
-    )
-    submitting.current = true
-    setStatus('pending')
-    try {
-      const response = await fetch('/contact-form.html', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-        signal: AbortSignal.timeout(15000),
-      })
-      if (!response.ok || /\bdata-netlify\s*=/i.test(await response.text()))
-        throw new Error('Message was not accepted')
-      setStatus('success')
-    } catch {
-      setStatus('error')
-    } finally {
-      submitting.current = false
-    }
+    const data = new FormData(event.currentTarget)
+    const href = buildMailto({
+      name: String(data.get('name') ?? '').trim(),
+      email: String(data.get('email') ?? '').trim(),
+      message: String(data.get('message') ?? '').trim(),
+    })
+    window.location.href = href
+    setStatus('success')
   }
 
   return (
     <div>
       {status === 'success' ? (
         <div className="border border-ink p-10 text-center">
-          <Mail aria-hidden="true" className="mx-auto mb-6 size-8 text-safelight" strokeWidth={1.25} />
-          <h2 className="font-display text-4xl italic">已收到留言</h2>
-          <p role="status" className="mt-3 mb-8 text-ink-soft">
-            谢谢你的来信——每一条留言我都会在两个工作日内回复，通常还会顺便问你一两个问题。
+          <Mail
+            aria-hidden="true"
+            className="mx-auto mb-6 size-8 text-safelight"
+            strokeWidth={1.25}
+          />
+          <h2 className="font-display text-4xl italic">邮件草稿已准备好</h2>
+          <p role="status" className="mt-3 mb-6 text-ink-soft">
+            已为你打开邮件应用，点「发送」就能寄给我。若没有自动弹出，请直接发信到{' '}
+            <a
+              href={`mailto:${site.email}`}
+              className="underline decoration-safelight underline-offset-4"
+            >
+              {site.email}
+            </a>
+            。
           </p>
           <button
             type="button"
             className="contact-button"
             onClick={() => setStatus('idle')}
           >
-            再发一条留言
+            再写一条
           </button>
         </div>
       ) : (
-        <form
-          name="contact"
-          method="POST"
-          action="/contact-form.html"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          aria-busy={status === 'pending'}
-          onSubmit={submit}
-          className="space-y-8"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p hidden>
-            <label>
-              请留空
-              <input name="bot-field" tabIndex={-1} autoComplete="off" />
-            </label>
-          </p>
-          <fieldset
-            disabled={status === 'pending'}
-            className="min-w-0 space-y-8 disabled:opacity-60"
-          >
+        <form name="contact" onSubmit={submit} className="space-y-8">
+          <fieldset className="min-w-0 space-y-8">
             <legend className="sr-only">你的留言</legend>
             <div className="grid gap-8 sm:grid-cols-2">
               <div>
@@ -121,19 +108,11 @@ export function ContactForm() {
             <div className="flex flex-wrap items-center justify-between gap-6">
               <button type="submit" className="contact-button">
                 <Send aria-hidden="true" size={14} />
-                {status === 'pending' ? '发送中…' : '发送留言'}
+                发送留言
               </button>
-              <p className="label text-ink-soft">2 个工作日内回复</p>
+              <p className="label text-ink-soft">会打开你的邮件应用 · 2 个工作日内回复</p>
             </div>
           </fieldset>
-          <p role="status" className="sr-only">
-            {status === 'pending' ? '正在发送你的留言…' : ''}
-          </p>
-          {status === 'error' && (
-            <p role="alert" className="border-l-2 border-safelight pl-4 text-ink">
-              没能确认你的留言已送达。你填写的内容都还在，请再试一次。本地预览不会处理提交。
-            </p>
-          )}
         </form>
       )}
     </div>

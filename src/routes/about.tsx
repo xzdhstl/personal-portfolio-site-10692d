@@ -149,12 +149,12 @@ function About() {
         <div className="lg:col-span-7">
           <h2 className="label text-ink-soft">做过的事</h2>
           <ul className="mt-6 font-display text-[clamp(2rem,4vw,3.6rem)] leading-[1.08] tracking-tight">
-            {activities.map((client, index) => (
-              <li key={client} className="inline">
+            {activities.map((activity, index) => (
+              <li key={activity} className="inline">
                 <span className="transition-colors hover:text-safelight hover:italic">
-                  {client}
+                  {activity}
                 </span>
-                {index < clients.length - 1 && (
+                {index < activities.length - 1 && (
                   <span aria-hidden="true" className="mx-3 text-safelight">
                     /
                   </span>
